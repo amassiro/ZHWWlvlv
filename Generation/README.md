@@ -19,3 +19,17 @@ Prepare:
 Run:
 
     cmsRun HIG-Summer12-ZHWWlvlv_cfg.py
+
+Prepare RECO:
+
+First add PU:
+
+    cmsDriver.py step1  --filein "file:HIG-Summer12-ZHWWlvlv-test.root" --fileout file:step1-ZHWWlvlv.root --pileup_input "dbs:/MinBias_TuneZ2star_8TeV-pythia6/Summer12-START50_V13-v3/GEN-SIM" --mc --eventcontent RAWSIM --pileup 2012_Summer_50ns_PoissonOOTPU --datatier GEN-SIM-RAW --conditions START53_V19::All --step DIGI,L1,DIGI2RAW,HLT:7E33v2  --python_filename DIGI-HZWWlvlv_cfg.py --no_exec -n -1
+
+
+Then run RECO-AOD
+
+    cmsDriver.py step2 --filein file:step1-ZHWWlvlv.root --fileout file:AODSIM-ZHWWlvlv.root --mc --eventcontent AODSIM,DQM --datatier AODSIM,DQM --conditions START53_V19::All --step RAW2DIGI,L1Reco,RECO,VALIDATION:validation_prod,DQM:DQMOfflinePOGMC  --python_filename AODSIM-HZWWlvlv_cfg.py --no_exec -n -1  --no_exec
+
+
+
