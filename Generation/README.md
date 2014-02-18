@@ -28,11 +28,13 @@ First add PU:
 
     cmsRun DIGI-HZWWlvlv_cfg.py
 
-    it takes a lot!
+    it takes a lot: ~ 20 seconds/event
 
 Then run RECO-AOD
 
     cmsDriver.py step2 --filein file:step1-ZHWWlvlv.root --fileout file:AODSIM-ZHWWlvlv.root --mc --eventcontent AODSIM,DQM --datatier AODSIM,DQM --conditions START53_V19::All --step RAW2DIGI,L1Reco,RECO,VALIDATION:validation_prod,DQM:DQMOfflinePOGMC  --python_filename AODSIM-HZWWlvlv_cfg.py --no_exec -n -1  --no_exec
 
     cmsRun AODSIM-HZWWlvlv_cfg.py
+
+    it takes a lot: ~ 5 seconds/event
 
