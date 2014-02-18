@@ -99,7 +99,7 @@ open(SAMPLEJOBLISTFILE, ">", $sampleJobListFile);
     $tempo1 = "./tempo1" ;
     system ("cat ".$JOBCfgTemplate."   | sed -e s%NUMBEREVENTS%".$EVENTSPerjob."%g > ".$tempo1) ;
 
-    $tempo4 = "./tempo1" ;
+    $tempo2 = "./tempo2" ;
     system ("cat ".$tempo1." | sed -e s%YOURSEED%".$jobIt."%g > ".$tempo2) ;
 
     $JOBCfgFile = $jobDir."/".$EXEName ;
