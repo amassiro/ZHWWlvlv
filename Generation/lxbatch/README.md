@@ -42,7 +42,7 @@ GEN-SIM
 
 
 
-Decay & hadronize: DIGI step lxbatch
+DIGI
 =======
 
 1. Prepare the jobs to launch on lxbatch:
@@ -81,4 +81,48 @@ Decay & hadronize: DIGI step lxbatch
 2. Launch the jobs:
 
         sh lancia.sh
+
+
+
+
+AODSIM
+=======
+
+1. Prepare the jobs to launch on lxbatch:
+
+        perl launchJobs_lxbatch_AODSIM.pl params_lxbatch_AODSIM_hww.CFG
+
+   params_lxbatch_AODSIM.CFG has the following input parameters:
+
+   - BASEDir: complete path of this lxbatch directory, eg:   
+
+                /afs/cern.ch/user/a/amassiro/work/Generation/CMSSW_5_3_14_patch2/src/ZHWWlvlv/Generation/lxbatch/
+
+   - JOBCfgTemplate: path of the cfg file to run with cmsRun, USE THE TEMPLATE:
+
+                AODSIM_template_cfg.py
+
+   - LISTOFSamples: txt file of the list of directories that contain the DIGI root files, eg of path into the txt:
+
+                /store/user/amassiro/ZH/8TeV/    DIGI
+
+     where the directory path and the directory have to be separated by a spacetab
+
+   - OUTPUTSAVEPath: directory where to save the output files (also a eos directory), eg:
+
+                /store/user/amassiro/ZH/8TeV/AODSIM/
+
+   - OUTPUTFILEName: name of a single job output root file, eg:
+
+                ZHWW_AODSIM
+
+   - EXEName: name of the executable in the JOB directory.
+
+   - JOBModulo: numeber of split lhe read per job. 
+
+
+2. Launch the jobs:
+
+        sh lancia.sh
+
 
