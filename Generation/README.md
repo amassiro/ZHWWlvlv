@@ -38,3 +38,58 @@ Then run RECO-AOD
 
     it takes a lot: ~ 5 seconds/event
 
+
+
+
+
+Latinos
+========
+
+Where:
+
+    cmsneu
+    /home/amassiro/Latinos/CMSSW_5_3_11_patch6/src/WWAnalysis/AnalysisStep/test/step3
+
+step1:
+
+    cmsRun latinosYieldSkim.py.ZHww.py    print  isMC=True globalTag=GR_R_52_V7  outputFile=/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root   correctMetPhi=False   &> tmp_dump.txt
+
+step2+3: need to split in different sub-samples, because >30k events has big memory leak
+
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW.root  label=WW id=3125  scale=0.0000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW.root
+    3.51494077427652715e-04   = 0.412 / (0.412 + 0.704 + 0.128) * (3*0.108 *3*0.108) * (3*0.0337) * 1000 / 10000
+    9.46393141653604743e-05   = 3.36558/100. * 3 * (3*0.108 *3*0.108)  * 21.5 / 100.  * 0.4153  * 1000 / 10000
+
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k.root doHiggs=True   acceptDuplicates=True
+    
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_0.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=0
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_1.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=10000
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_2.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=20000
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_3.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=30000
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_4.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=40000
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_5.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=50000
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_6.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=60000
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_7.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=70000
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_8.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=80000
+    cmsRun step3.py print inputFiles=file:/tmp/amassiro/latinosYieldSkim_MC_ZHWW_100k.root     label=WW id=3125  scale=0.00000946393141653604743 outputFile=/tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_9.root doHiggs=True   acceptDuplicates=True  maxEvents=10000  skipEvents=90000
+    
+    
+    9.46393141653604709e-06   = 3.36558/100. * 3 * (3*0.108 *3*0.108)  * 21.5 / 100.  * 0.4153  * 1000 / 100000
+
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k.root
+
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_0_numEvent10000.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_1_numEvent10000.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_2_numEvent10000.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_3_numEvent10000.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_4_numEvent10000.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_5_numEvent10000.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_6_numEvent10000.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_7_numEvent10000.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_8_numEvent10000.root
+    python ucsd2latino.py /tmp/amassiro/step3_latinosYieldSkim_MC_ZHWW_100k_9_numEvent10000.root
+
+    rm latinostep3_latinosYieldSkim_MC_ZHWW_100k.root
+    hadd latinostep3_latinosYieldSkim_MC_ZHWW_100k.root  latinostep3_latinosYieldSkim_MC_ZHWW_100k_?_numEvent10000.root
+
