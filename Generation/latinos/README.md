@@ -3,7 +3,7 @@ Latinos instructions
 
 Create list of files
 
-    eos ls /store/user/amassiro/ZH/8TeV/AODSIM/ | awk '{print "@/store/user/amassiro/ZH/8TeV/AODSIM/"$1"@,"}' | tr "@" "'"
+    eos ls /store/user/amassiro/ZH/8TeV/AODSIM/ | awk '{print "   @/store/user/amassiro/ZH/8TeV/AODSIM/"$1"@,"}' | tr "@" "'"
 
 hardcoded in skim.py.
 
