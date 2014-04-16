@@ -14,3 +14,36 @@ Then
 
 
 
+
+Add variables
+====
+    
+triggW
+    
+    ./gardener.py efftfiller \
+          /data/amassiro/LatinosTrees/nominals_all/latinostep3_latinosYieldSkim_MC_ZHWW_100k_new.root  \
+          /data/amassiro/LatinosTrees/nominals_all/latinostep3_latinosYieldSkim_MC_ZHWW_100k_new_weight.root  \
+          -f ../data/fit_results.txt
+
+
+puW
+
+    ./gardener.py  puadder \
+                /data/amassiro/LatinosTrees/nominals_all/latinostep3_latinosYieldSkim_MC_ZHWW_100k_new_weight.root  \
+                /data/amassiro/LatinosTrees/nominals_all/latinostep3_latinosYieldSkim_MC_ZHWW_100k_new_weight_puW.root \
+               --mc=../data/PileupMC_60bin_S10.root    \
+               --data=../data/PUdata2012Final.root   \
+               --HistName=pileup   \
+               --branch=puW  \
+               --kind=trpu
+
+
+effW
+
+    ./gardener.py effwfiller \
+            /data/amassiro/LatinosTrees/nominals_all/latinostep3_latinosYieldSkim_MC_ZHWW_100k_new_weight_puW.root  \
+            /data/amassiro/LatinosTrees/nominals_all/latinostep3_latinosYieldSkim_MC_ZHWW_100k_new_weight_puW_effW.root \
+            --mufile=../data/muons_scale_factors.root \
+            --elfile=../data/electrons_scale_factors.root \
+            --muname=muonsDATAMCratio_all \
+            --elname=electronsDATAMCratio_All_selec
